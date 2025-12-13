@@ -1,0 +1,26 @@
+{
+  "title": "Munir Khakhi",
+  "url": "https://optimizewithmunir.com",
+  "domain": "optimizewithmunir.com",
+  "description": "Remote Backend Infra Developer | Event Driven Architecture Specialist | Go & Node.js Expert",
+  "genre": "Technology",
+  "googleAnalyticsId": "",
+  "sendWebVitals": false,
+  "feed": {
+    "subtitle": "Insights on Backend Engineering, Go, and Event Driven Architecture.",
+    "filename": "feed.xml",
+    "path": "/feed/feed.xml",
+    "id": "https://optimizewithmunir.com"
+  },
+  "jsonfeed": {
+    "path": "/feed/feed.json",
+    "url": "https://optimizewithmunir.com/feed/feed.json"
+  },
+  "author": {
+    "name": "Munir Khakhi",
+    "twitterHandle": "MunirKhakhi"
+  },
+  "publisher": {
+    "name": "Munir Khakhi"
+  }
+}

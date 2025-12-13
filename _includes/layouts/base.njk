@@ -8,6 +8,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TV0WZTDY0L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TV0WZTDY0L');
+    </script>
     <!-- See _data/csp.js for how to add to the CSP. 
     Update me: Remove comment if you want a CSP.
     <meta http-equiv="Content-Security-Policy" content="{{ csp.regular | safe }}">
@@ -59,7 +67,7 @@
     </script>
     <!-- css is inserted by optimize-html custom plugin -->
   </head>
-  <body>
+  <body class="{{ templateClass }}">
     <header>
       <nav>
         <div id="nav">

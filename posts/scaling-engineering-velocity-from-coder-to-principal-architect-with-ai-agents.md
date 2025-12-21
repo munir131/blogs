@@ -4,7 +4,7 @@ description: How I used local AI agents to refactor legacy code, hit 88% test co
 date: 2025-12-21
 tags:
   - ai-engineering
-  - software-architecture
+  - software architecture
   - devops
   - productivity
   - testing

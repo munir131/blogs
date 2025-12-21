@@ -15,7 +15,7 @@ image: /img/IMG_0233.jpg
 
 ![Speaking at GDG Cloud Rajkot](/img/IMG_0233.jpg)
 
-On December 14th, I had the privilege of speaking at **GDG Cloud Rajkot**. The topic wasn't just about "how to use AI"—it was about **how to maintain engineering rigor in the age of AI**.
+On December 14th, I had the privilege of speaking at **GDG Cloud Rajkot**. The topic wasn't just about "how to use AI" - it was about **how to maintain engineering rigor in the age of AI**.
 
 We are in a gold rush of generative coding tools. But as any senior engineer knows, writing code is easy. Reading, maintaining, and scaling it is the hard part. If we aren't careful, AI becomes a high-speed conveyor belt for technical debt.
 

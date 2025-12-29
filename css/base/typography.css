@@ -1,0 +1,62 @@
+@font-face {
+  font-family: "Inter";
+  font-weight: 100 900;
+  font-style: oblique 0deg 10deg;
+  src: url("/fonts/Inter-3.19.var.woff2") format("woff2");
+  font-display: swap;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--body-font-size-mobile);
+    line-height: var(--line-height-body);
+    font-weight: var(--font-weight-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-heading);
+}
+
+h1 {
+    font-size: var(--h1-font-size-mobile);
+}
+
+h2 {
+    font-size: var(--h2-font-size-mobile);
+}
+
+h3 {
+    font-size: var(--h3-font-size-mobile);
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: var(--body-font-size-tablet, 1.0625rem);
+    }
+    h1 {
+        font-size: var(--h1-font-size-tablet);
+    }
+    h2 {
+        font-size: var(--h2-font-size-tablet);
+    }
+    h3 {
+        font-size: var(--h3-font-size-tablet);
+    }
+}
+
+@media (min-width: 1200px) {
+    body {
+        font-size: var(--body-font-size-desktop);
+    }
+    h1 {
+        font-size: var(--h1-font-size-desktop);
+    }
+    h2 {
+        font-size: var(--h2-font-size-desktop);
+    }
+    h3 {
+        font-size: var(--h3-font-size-desktop);
+    }
+}
+

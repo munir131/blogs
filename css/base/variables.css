@@ -1,0 +1,53 @@
+:root {
+  /* Colors */
+  --primary: #FFC700;
+  --primary-dark: #E7B900;
+  --background: #121212;
+  --text: #f0f0f0;
+  --muted: #999;
+  --accent: #FFC700;
+  --code-bg: #272727;
+  --code-text: #ddd;
+
+
+  /* Spacing */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 80px;
+  --space-8: 96px;
+
+  /* Typography */
+  --font-primary: "Inter UI", sans-serif;
+  --body-font-size-mobile: 1rem;
+  --body-font-size-tablet: 1.0625rem;
+  --body-font-size-desktop: 1.125rem;
+  --h1-font-size-mobile: 2rem;
+  --h1-font-size-tablet: 2.5rem;
+  --h1-font-size-desktop: 3rem;
+  --h2-font-size-mobile: 1.5rem;
+  --h2-font-size-tablet: 1.875rem;
+  --h2-font-size-desktop: 2.25rem;
+  --h3-font-size-mobile: 1.25rem;
+  --h3-font-size-tablet: 1.5rem;
+  --h3-font-size-desktop: 1.75rem;
+  --line-height-body: 1.6;
+  --font-weight-body: 400;
+  --font-weight-heading: 600;
+
+  /* Layout */
+  --max-width: 1200px;
+  --container-padding-mobile: 16px;
+  --container-padding-tablet: 24px;
+  --container-padding-desktop: 32px;
+  --border-radius: 8px;
+  
+  /* Responsive breakpoints */
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-large: 1200px;
+}

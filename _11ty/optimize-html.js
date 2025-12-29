@@ -29,6 +29,8 @@ const ampOptimizer = AmpOptimizer.create({
 const PurgeCSS = require("purgecss").PurgeCSS;
 const csso = require("csso");
 
+const CleanCSS = require("clean-css");
+
 /**
  * Inlines the CSS.
  * Makes font display display-optional
@@ -45,9 +47,10 @@ const purifyCss = async (rawContent, outputPath) => {
     !isAmp(content) &&
     !/data-style-override/.test(content)
   ) {
-    let before = require("fs").readFileSync("css/main.css", {
-      encoding: "utf-8",
-    });
+    let before = new CleanCSS({
+      level: 2,
+      inline: ["all"],
+    }).minify(["css/main.css"]).styles;
 
     before = before.replace(
       /@font-face {/g,
@@ -66,18 +69,11 @@ const purifyCss = async (rawContent, outputPath) => {
           raw: before,
         },
       ],
-      /*extractors: [
-        {
-          extractor: require("purge-from-html").extract,
-          extensions: ["html"],
-        },
-      ],*/
       fontFace: true,
       variables: true,
     });
 
     const after = csso.minify(purged[0].css).css;
-    //console.log("CSS reduction", before.length - after.length);
 
     content = content.replace("</head>", `<style>${after}</style></head>`);
   }

@@ -1,0 +1,31 @@
+/* Main container with responsive padding */
+main {
+00002|   max-width: 100%;
+00003|   margin: 0 auto;
+00004|   padding: 0 var(--container-padding-mobile);
+00005| }
+
+@media (min-width: 768px) {
+  main {
+    padding: 0 var(--container-padding-tablet);
+  }
+}
+
+@media (min-width: 1200px) {
+  main {
+    padding: 0 var(--container-padding-desktop);
+  }
+}
+
+
+@media (min-width: 768px) {
+  main {
+    padding: 0 var(--container-padding-tablet);
+  }
+}
+
+@media (min-width: 1200px) {
+  main {
+    padding: 0 var(--container-padding-desktop);
+  }
+}

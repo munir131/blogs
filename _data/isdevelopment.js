@@ -20,6 +20,5 @@
  */
 
 module.exports = function () {
-  // YOLO.
-  return /serve|watch/.test(process.argv.join());
+  return process.env.ELEVENTY_RUN_MODE === "serve" || process.env.ELEVENTY_RUN_MODE === "watch";
 };

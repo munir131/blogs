@@ -1,39 +1,46 @@
-/* This file will contain all the new styles for the redesign. */
+@import "tailwindcss";
+@config "../tailwind.config.js";
 
-:root {
-  /* Inspired by https://zaidmukaddam.com/blog/the-new-benches */
-  --primary: #FFC700;
-  --primary-dark: #d9a900;
-  --background: #111111;
-  --text: #f0f0f0;
-  --muted: #a0a0a0;
-  --accent: #FFC700;
-  --code-bg: #1e1e1e;
-  --code-text: #d4d4d4;
-
-  --font-primary: 'Inter', sans-serif;
-  --font-weight-body: 300;
-  --font-weight-heading: 700;
-
-  --border-radius: 8px;
-
-  --transition-fast: 0.2s ease;
+@layer components {
+  .tmpl-post article {
+    & p {
+      @apply mb-4 leading-relaxed;
+    }
+    & h2 {
+      @apply text-2xl font-bold mt-8 mb-4;
+    }
+    & h3 {
+      @apply text-xl font-bold mt-6 mb-3;
+    }
+    & ul {
+      @apply list-disc list-outside ml-6 mb-4;
+    }
+    & ol {
+      @apply list-decimal list-outside ml-6 mb-4;
+    }
+    & li {
+      @apply mb-1;
+    }
+    & blockquote {
+      @apply border-l-4 border-primary pl-4 italic my-6 text-muted;
+    }
+    & pre {
+      @apply p-4 rounded-lg overflow-x-auto mb-6 bg-code-bg text-code-text;
+    }
+    & code {
+      @apply bg-code-bg text-code-text rounded px-1 py-0.5 text-sm;
+    }
+    & pre code {
+      @apply bg-transparent p-0 text-base;
+    }
+    & img {
+      @apply rounded-lg my-8 w-full h-auto shadow-md;
+    }
+    & a {
+      @apply text-primary hover:underline font-medium;
+    }
+    & strong {
+      @apply font-bold text-text;
+    }
+  }
 }
-
-body {
-    transition: background-color var(--transition-fast), color var(--transition-fast);
-}
-
-a {
-    transition: color var(--transition-fast);
-}
-
-.card, .post-card {
-    border: 1px solid #333;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
-}
-
-.card:hover, .post-card:hover {
-    border-color: var(--primary);
-}
-

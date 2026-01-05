@@ -61,7 +61,7 @@ async function cid(ip, otherStuff) {
     const encoder = new TextEncoder();
     const data = encoder.encode(
       "sha256",
-      ip + otherStuff + "this is open source"
+      ip + otherStuff + "this is open source",
     );
     const hashBuffer = await crypto.subtle.digest("SHA-256", data);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
@@ -84,12 +84,12 @@ async function proxyToGoogleAnalytics(req, url, body) {
   // attach other GA params, required for IP address since client doesn't have access to it. UA and CID can be sent from client
   params.set(
     "uip",
-    headers.get("x-forwarded-for") || headers.get("x-bb-ip") || ""
+    headers.get("x-forwarded-for") || headers.get("x-bb-ip") || "",
   ); // ip override. Look into headers for clients IP address, as opposed to IP address of host running lambda function
   params.set("ua", params.get("ua") || headers.get("user-agent") || ""); // user agent override
   params.set(
     "cid",
-    params.get("cid") || (await cid(params.get("uip", params.get("ua"))))
+    params.get("cid") || (await cid(params.get("uip", params.get("ua")))),
   );
 
   const qs = params.toString();
@@ -116,7 +116,7 @@ async function proxyToGoogleAnalytics(req, url, body) {
   console.error(
     "googleanalytics status code",
     result.status,
-    result.statusText
+    result.statusText,
   );
 }
 

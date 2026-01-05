@@ -1,8 +1,13 @@
-<ul>
+<div class="space-y-4">
 {% for post in postslist | reverse %}
-  <li>
-    <a href="{{ post.url | url }}">{% if post.data.title %}{{ post.data.title }}{% else %}<code>{{ post.url }}</code>{% endif %}</a>
-    <time  datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
-  </li>
+  <div class="p-4 border border-muted/20 rounded-lg hover:border-primary transition-colors">
+    <a href="{{ post.url | url }}" class="block">
+      <h3 class="font-bold text-lg text-primary hover:underline">{% if post.data.title %}{{ post.data.title }}{% else %}<code>{{ post.url }}</code>{% endif %}</h3>
+      <time class="text-muted text-sm" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+      {% if post.data.description %}
+        <p class="mt-2">{{ post.data.description }}</p>
+      {% endif %}
+    </a>
+  </div>
 {% endfor %}
-</ul>
+</div>

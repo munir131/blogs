@@ -43,7 +43,7 @@ const quality = {
 
 module.exports = async function srcset(filename, format) {
   const names = await Promise.all(
-    widths.map((w) => resize(filename, w, format))
+    widths.map((w) => resize(filename, w, format)),
   );
   return {
     srcset: names.map((n, i) => `${n} ${widths[i]}w`).join(", "),

@@ -46,12 +46,12 @@ describe("check build output for a generic post", () => {
     it("should have metadata", () => {
       assert.equal(select("title"), "This is my first post.");
       expect(select("meta[property='og:image']", "content")).to.match(
-        /\/img\/remote\/\w+.jpg/
+        /\/img\/remote\/\w+.jpg/,
       );
       assert.equal(select("link[rel='canonical']", "href"), POST_URL);
       assert.equal(
         select("meta[name='description']", "content"),
-        "This is a post on My Blog about agile frameworks."
+        "This is a post on My Blog about agile frameworks.",
       );
     });
 
@@ -65,9 +65,11 @@ describe("check build output for a generic post", () => {
       const scripts = doc.querySelectorAll("script[src]");
       let has_ga_id = GA_ID ? 1 : 0;
       expect(scripts).to.have.length(has_ga_id + 2); // NOTE: update this when adding more <script>
-      expect(scripts[0].getAttribute("src")).to.contain("googletagmanager.com/gtag/js");
+      expect(scripts[0].getAttribute("src")).to.contain(
+        "googletagmanager.com/gtag/js",
+      );
       expect(scripts[1].getAttribute("src")).to.match(
-        /^\/js\/min\.js\?hash=\w+/
+        /^\/js\/min\.js\?hash=\w+/,
       );
     });
 
@@ -77,7 +79,7 @@ describe("check build output for a generic post", () => {
       }
       const scripts = doc.querySelectorAll("script[src]");
       expect(scripts[1].getAttribute("src")).to.match(
-        /^\/js\/cached\.js\?hash=\w+/
+        /^\/js\/cached\.js\?hash=\w+/,
       );
       const noscript = doc.querySelectorAll("noscript");
       expect(noscript.length).to.be.greaterThan(0);
@@ -107,7 +109,7 @@ describe("check build output for a generic post", () => {
       for (let b of buttons) {
         expect(
           (b.firstElementChild === null && b.textContent.trim()) ||
-            b.getAttribute("aria-label") != null
+            b.getAttribute("aria-label") != null,
         ).to.be.true;
       }
     });
@@ -129,7 +131,7 @@ describe("check build output for a generic post", () => {
 
     it("should link to twitter with noopener", () => {
       const twitterLinks = Array.from(doc.querySelectorAll("a")).filter((a) =>
-        a.href.startsWith("https://twitter.com")
+        a.href.startsWith("https://twitter.com"),
       );
       for (let a of twitterLinks) {
         expect(a.rel).to.contain("noopener");
@@ -140,10 +142,10 @@ describe("check build output for a generic post", () => {
     describe("body", () => {
       it("should have images", () => {
         const images = Array.from(
-          doc.querySelectorAll("article :not(aside) picture img")
+          doc.querySelectorAll("article :not(aside) picture img"),
         );
         const pictures = Array.from(
-          doc.querySelectorAll("article :not(aside) picture")
+          doc.querySelectorAll("article :not(aside) picture"),
         );
         const metaImage = select("meta[property='og:image']", "content");
         expect(images.length).to.greaterThan(0);
@@ -159,13 +161,13 @@ describe("check build output for a generic post", () => {
         const webp = sources.shift();
         const jpg = sources.shift();
         expect(jpg.srcset).to.match(
-          /\/img\/remote\/\w+-1920w.jpg 1920w, \/img\/remote\/\w+-1280w.jpg 1280w, \/img\/remote\/\w+-640w.jpg 640w, \/img\/remote\/\w+-320w.jpg 320w/
+          /\/img\/remote\/\w+-1920w.jpg 1920w, \/img\/remote\/\w+-1280w.jpg 1280w, \/img\/remote\/\w+-640w.jpg 640w, \/img\/remote\/\w+-320w.jpg 320w/,
         );
         expect(webp.srcset).to.match(
-          /\/img\/remote\/\w+-1920w.webp 1920w, \/img\/remote\/\w+-1280w.webp 1280w, \/img\/remote\/\w+-640w.webp 640w, \/img\/remote\/\w+-320w.webp 320w/
+          /\/img\/remote\/\w+-1920w.webp 1920w, \/img\/remote\/\w+-1280w.webp 1280w, \/img\/remote\/\w+-640w.webp 640w, \/img\/remote\/\w+-320w.webp 320w/,
         );
         expect(avif.srcset).to.match(
-          /\/img\/remote\/\w+-1920w.avif 1920w, \/img\/remote\/\w+-1280w.avif 1280w, \/img\/remote\/\w+-640w.avif 640w, \/img\/remote\/\w+-320w.avif 320w/
+          /\/img\/remote\/\w+-1920w.avif 1920w, \/img\/remote\/\w+-1280w.avif 1280w, \/img\/remote\/\w+-640w.avif 640w, \/img\/remote\/\w+-320w.avif 320w/,
         );
         expect(jpg.type).to.equal("image/jpeg");
         expect(webp.type).to.equal("image/webp");
@@ -184,12 +186,12 @@ describe("check build output for a generic post", () => {
       it("should have json-ld", () => {
         const json = select("script[type='application/ld+json']");
         const images = Array.from(
-          doc.querySelectorAll("article :not(aside) img")
+          doc.querySelectorAll("article :not(aside) img"),
         );
         const obj = JSON.parse(json);
         expect(obj.url).to.equal(POST_URL);
         expect(obj.description).to.equal(
-          "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster..."
+          "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster...",
         );
         expect(obj.image.length).to.be.greaterThan(0);
         obj.image.forEach((url, index) => {

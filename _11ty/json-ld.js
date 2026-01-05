@@ -32,7 +32,7 @@ const jsonLd = (rawContent, outputPath) => {
   if (outputPath && outputPath.endsWith(".html")) {
     const dom = new JSDOM(content);
     const jsonLd = dom.window.document.querySelector(
-      "script[type='application/ld+json']"
+      "script[type='application/ld+json']",
     );
     if (!jsonLd) {
       return content;

@@ -51,4 +51,4 @@ For those who want to dive deeper into the prompts I discussed, the slides are a
 
 AI will not replace engineers. It will replace engineers who refuse to leverage it to increase their quality bar. The future belongs to those who use these tools to strictly enforce best practices, automating the "boring" parts of code review so we can focus on system design and reliability.
 
-*Special thanks to the GDG Cloud Rajkot team for hosting an incredible event.*
+_Special thanks to the GDG Cloud Rajkot team for hosting an incredible event._

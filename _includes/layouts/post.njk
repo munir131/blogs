@@ -8,9 +8,9 @@ templateClass: tmpl-post
 {% block extraArticleHeader %}
    {% set wc = content | striptags | wordcount %}
    {% set wPerMinute = (wc / 240) + 1 %}
-   <aside>
-     {{ wPerMinute | round }} min read.
-   </aside>
+<aside class="text-muted text-sm">
+  {{ wPerMinute | round }} min read.
+</aside>
 {% endblock %}
 
 {% set shareUrl = metadata.url + page.url %}
@@ -18,18 +18,19 @@ templateClass: tmpl-post
 {% block article %}
 {{ content | safe }}
 
-<h1>🙏🙏🙏</h1>
-<p>
-  Since you've made it this far, <a href="{{ shareUrl | safe }}" on-click="share">sharing</a> this article on your favorite social media network 
-  would be highly appreciated 💖! For feedback, please 
-  <a href="https://twitter.com/{{ metadata.author.twitterHandle }}" target="_blank" rel="noopener">ping me on Twitter.</a>
-</p>
-
-<share-widget>
-  <button on-click="share" aria-label="Share" href="{{ shareUrl | safe }}">
-    <div></div>
-  </button>
-</share-widget>
+<div class="mt-8 p-4 bg-primary/10 rounded-lg text-center">
+  <h2 class="font-bold text-lg mb-2">🙏🙏🙏</h2>
+  <p>
+    Since you've made it this far, <a href="{{ shareUrl | safe }}" on-click="share" class="text-primary hover:underline">sharing</a> this article on your favorite social media network 
+    would be highly appreciated 💖! For feedback, please 
+    <a href="https://twitter.com/{{ metadata.author.twitterHandle }}" target="_blank" rel="noopener" class="text-primary hover:underline">ping me on Twitter.</a>
+  </p>
+  <share-widget>
+    <button on-click="share" aria-label="Share" href="{{ shareUrl | safe }}" class="mt-4 bg-primary text-white font-bold py-2 px-4 rounded-full hover:bg-primary-dark transition-colors">
+      Share this article
+    </button>
+  </share-widget>
+</div>
 
 <script type="application/ld+json">
 {

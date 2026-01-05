@@ -42,9 +42,10 @@ We hit **88% coverage** almost immediately. The agent scaffolded the tests, mock
 A refactor isn't finished until it's running in CI. I instructed the agent to set up a GitHub Actions workflow.
 
 It generated a `ci.yml` that:
-*   Runs the tests on push.
-*   Uploads reports to Codecov.
-*   Enforces linting.
+
+- Runs the tests on push.
+- Uploads reports to Codecov.
+- Enforces linting.
 
 I didn't have to look up the YAML syntax for the latest Node.js action or debug indentation errors. It just worked.
 
@@ -53,9 +54,10 @@ I didn't have to look up the YAML syntax for the latest Node.js action or debug 
 This workflow changes the job description. I didn't write the majority of the lines in this update, but the system is exactly what I intended it to be.
 
 My role shifted from **Implementer** to **Architect**:
-*   **Defining Constraints:** "Use `core/` for logic."
-*   **Reviewing Architecture:** Verifying the Single Responsibility Principle.
-*   **Managing Agents:** Directing the workflow for implementation, testing, and CI.
+
+- **Defining Constraints:** "Use `core/` for logic."
+- **Reviewing Architecture:** Verifying the Single Responsibility Principle.
+- **Managing Agents:** Directing the workflow for implementation, testing, and CI.
 
 The agent handles the implementation details. I own the architecture and the quality standards.
 

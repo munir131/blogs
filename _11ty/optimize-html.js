@@ -39,9 +39,12 @@ const CleanCSS = require("clean-css");
  * Optimizes AMP
  */
 
+const isdevelopment = require("../_data/isdevelopment.js")();
+
 const purifyCss = async (rawContent, outputPath) => {
   let content = rawContent;
   if (
+    !isdevelopment &&
     outputPath &&
     outputPath.endsWith(".html") &&
     !isAmp(content) &&
@@ -50,7 +53,7 @@ const purifyCss = async (rawContent, outputPath) => {
     let before = new CleanCSS({
       level: 2,
       inline: ["all"],
-    }).minify(["css/main.css"]).styles;
+    }).minify(["css/redesign.tmp.css"]).styles;
 
     before = before.replace(
       /@font-face {/g,

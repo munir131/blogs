@@ -30,7 +30,7 @@ if (location.search) {
 function tweet_(url) {
   open(
     "https://twitter.com/intent/tweet?url=" + encodeURIComponent(url),
-    "_blank"
+    "_blank",
   );
 }
 function tweet(anchor) {
@@ -112,7 +112,7 @@ var timeout = setTimeout(
     clearTimeout(timeout);
     ga("send", "pageview");
   }),
-  1000
+  1000,
 );
 
 var ref = +new Date();
@@ -177,7 +177,7 @@ addEventListener(
       eventAction: button.getAttribute("aria-label") || button.textContent,
     });
   },
-  true
+  true,
 );
 var selectionTimeout;
 addEventListener(
@@ -196,7 +196,7 @@ addEventListener(
       });
     }, 2000);
   },
-  true
+  true,
 );
 
 if (window.ResizeObserver && document.querySelector("header nav #nav")) {
@@ -219,7 +219,7 @@ if (window.ResizeObserver && document.querySelector("header nav #nav")) {
     requestedAniFrame = false;
     var percent = Math.min(
       (document.scrollingElement.scrollTop / (bottom - winHeight)) * 100,
-      100
+      100,
     );
     progress.style.transform = `translate(-${100 - percent}vw, 0)`;
     if (Date.now() - timeOfLastScroll < 3000) {
@@ -267,7 +267,7 @@ document.body.addEventListener(
     }
     removeBlurredImage(e.target);
   },
-  /* capture */ "true"
+  /* capture */ "true",
 );
 for (let img of document.querySelectorAll("img")) {
   if (img.complete) {

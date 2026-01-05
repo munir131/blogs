@@ -66,7 +66,7 @@ const processImage = async (img, outputPath) => {
   if (inputType == "gif") {
     const videoSrc = await gif2mp4(src);
     const video = img.ownerDocument.createElement(
-      /AMP/i.test(img.tagName) ? "amp-video" : "video"
+      /AMP/i.test(img.tagName) ? "amp-video" : "video",
     );
     [...img.attributes].map(({ name, value }) => {
       video.setAttribute(name, value);
@@ -92,7 +92,7 @@ const processImage = async (img, outputPath) => {
     img.setAttribute(
       "style",
       `background-size:cover;` +
-        `background-image:url("${await blurryPlaceholder(src)}")`
+        `background-image:url("${await blurryPlaceholder(src)}")`,
     );
     const doc = img.ownerDocument;
     const picture = doc.createElement("picture");
@@ -124,7 +124,7 @@ async function setSrcset(img, src, format) {
     "sizes",
     img.getAttribute("align")
       ? "(max-width: 608px) 50vw, 187px"
-      : "(max-width: 608px) 100vw, 608px"
+      : "(max-width: 608px) 100vw, 608px",
   );
   return setInfo.fallback;
 }

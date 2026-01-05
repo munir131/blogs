@@ -5,33 +5,35 @@ description: Remote Backend Infra Developer | Event Driven Architecture Speciali
 date: Last Modified
 ---
 
-<div class="intro">
-  <p>
-    I’m an experienced Remote Backend Infra Developer based in India, with 12+ years of expertise in Go (Golang), Node.js, and cloud infrastructure. I specialize in building scalable Event Driven Architectures using SQS, Google PubSub, Redis, and Apache Pulsar.
-  </p>
-  <p>
-    I believe in scalable, secure-by-design systems and in mentoring teams to deliver engineering excellence.
-  </p>
-</div>
+<div class="space-y-5">
+  <div class="intro space-y-4">
+    <p class="text-lg">
+      I’m an experienced Remote Backend Infra Developer based in India, with 12+ years of expertise in Go (Golang), Node.js, and cloud infrastructure. I specialize in building scalable Event Driven Architectures using SQS, Google PubSub, Redis, and Apache Pulsar.
+    </p>
+    <p class="text-lg">
+      I believe in scalable, secure-by-design systems and in mentoring teams to deliver engineering excellence.
+    </p>
+  </div>
 
-<div class="competencies">
-  <h2>Core Competencies</h2>
-  <ul>
-    <li>Cloud & Infrastructure</li>
-    <li>Event Driven Architecture</li>
-    <li>Containerization</li>
-    <li>Go Developer (Golang)</li>
-    <li>Node.js Expert</li>
-    <li>DevOps & Automation</li>
-    <li>Security</li>
-    <li>Leadership</li>
-  </ul>
-</div>
+  <div class="competencies">
+    <h2 class="text-lg font-bold border-b border-muted/20 pb-2 mb-4">Core Competencies</h2>
+    <ul class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <li class="bg-primary/10 text-primary rounded-md px-3 py-1 text-center">Cloud & Infrastructure</li>
+      <li class="bg-primary/10 text-primary rounded-md px-3 py-1 text-center">Event Driven Architecture</li>
+      <li class="bg-primary/10 text-primary rounded-md px-3 py-1 text-center">Containerization</li>
+      <li class="bg-primary/10 text-primary rounded-md px-3 py-1 text-center">Go Developer (Golang)</li>
+      <li class="bg-primary/10 text-primary rounded-md px-3 py-1 text-center">Node.js Expert</li>
+      <li class="bg-primary/10 text-primary rounded-md px-3 py-1 text-center">DevOps & Automation</li>
+      <li class="bg-primary/10 text-primary rounded-md px-3 py-1 text-center">Security</li>
+      <li class="bg-primary/10 text-primary rounded-md px-3 py-1 text-center">Leadership</li>
+    </ul>
+  </div>
 
-<div id="posts">
-  <h2>Posts</h2>
-  {% set postslist = collections.posts %}
-  {% include "postslist.njk" %}
+  <div id="posts" class="mb-8">
+    <h2 class="text-lg font-bold border-b border-muted/20 pb-2 mb-4">Posts</h2>
+    {% set postslist = collections.posts %}
+    {% include "postslist.njk" %}
+  </div>
 </div>
 
 <script type="application/ld+json">

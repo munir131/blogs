@@ -48,14 +48,14 @@ const addCspHash = async (rawContent, outputPath) => {
     });
 
     const csp = dom.window.document.querySelector(
-      "meta[http-equiv='Content-Security-Policy']"
+      "meta[http-equiv='Content-Security-Policy']",
     );
     if (!csp) {
       return content;
     }
     csp.setAttribute(
       "content",
-      csp.getAttribute("content").replace("HASHES", hashes.join(" "))
+      csp.getAttribute("content").replace("HASHES", hashes.join(" ")),
     );
 
     content = dom.serialize();

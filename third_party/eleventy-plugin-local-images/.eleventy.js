@@ -93,7 +93,7 @@ const processImageAttr = async (img, attribute) => {
           await fs.outputFile(outputFilePath, imgBuffer);
           if (config.verbose) {
             console.log(
-              `eleventy-plugin-local-images: Saving ${filename} to ${outputFilePath}`
+              `eleventy-plugin-local-images: Saving ${filename} to ${outputFilePath}`,
             );
           }
         }
@@ -138,7 +138,7 @@ module.exports = {
     // check the required config is present
     if (!config.assetPath || !config.distPath) {
       throw new Error(
-        "eleventy-plugin-local-images requires that assetPath and distPath are set"
+        "eleventy-plugin-local-images requires that assetPath and distPath are set",
       );
     }
 

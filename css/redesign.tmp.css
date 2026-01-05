@@ -246,6 +246,9 @@
   .inline {
     display: inline;
   }
+  .table {
+    display: table;
+  }
   .h-1 {
     height: calc(var(--spacing) * 1);
   }
@@ -326,6 +329,9 @@
   .border-b {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
+  }
+  .border-muted {
+    border-color: var(--muted);
   }
   .border-muted\/20 {
     border-color: var(--muted);

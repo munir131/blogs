@@ -26,7 +26,6 @@ const ampOptimizer = AmpOptimizer.create({
   imageBasePath: "./_site/",
   //verbose: true,
 });
-const PurgeCSS = require("purgecss").PurgeCSS;
 const csso = require("csso");
 
 const CleanCSS = require("clean-css");
@@ -50,33 +49,14 @@ const purifyCss = async (rawContent, outputPath) => {
     !isAmp(content) &&
     !/data-style-override/.test(content)
   ) {
-    let before = new CleanCSS({
-      level: 2,
-      inline: ["all"],
-    }).minify(["css/redesign.tmp.css"]).styles;
+    let before = require("fs").readFileSync("css/redesign.tmp.css", "utf8");
 
     before = before.replace(
       /@font-face {/g,
-      "@font-face {font-display:optional;"
+      "@font-face {font-display:optional;",
     );
 
-    const purged = await new PurgeCSS().purge({
-      content: [
-        {
-          raw: rawContent,
-          extension: "html",
-        },
-      ],
-      css: [
-        {
-          raw: before,
-        },
-      ],
-      fontFace: true,
-      variables: true,
-    });
-
-    const after = csso.minify(purged[0].css).css;
+    const after = csso.minify(before).css;
 
     content = content.replace("</head>", `<style>${after}</style></head>`);
   }

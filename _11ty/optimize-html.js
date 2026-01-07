@@ -56,7 +56,7 @@ const purifyCss = async (rawContent, outputPath) => {
       "@font-face {font-display:optional;",
     );
 
-    const after = csso.minify(before).css;
+    const after = before;
 
     content = content.replace("</head>", `<style>${after}</style></head>`);
   }

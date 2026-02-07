@@ -1,8 +1,11 @@
 {
-  "name": "eleventy-high-performance-blog",
+  "name": "optimizewithmunir-blog",
   "version": "5.0.2",
   "license": "MIT",
-  "description": "A starter repository for a blog web site using the Eleventy static site generator.",
+  "description": "Source code for the Optimize with Munir blog, a high-performance site built with Eleventy.",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "build-ci": "npm run build:css && npm run js-build && eleventy && npm run test",
     "build": "npm run clean && npm run build-ci",
@@ -67,6 +70,7 @@
     "hasha": "^5.2.0",
     "html-minifier": "^4.0.0",
     "image-size": "^0.8.3",
+    "jimp": "^1.6.0",
     "lru-cache": "^5.1.1",
     "mocha": "^10.1.0",
     "phin": "^3.5.0",

@@ -3,7 +3,16 @@ title: "Node.js Streams at Scale: Handling 1 Million Records Without Crashing"
 description: "Learn how to generate and upload massive CSV reports in Node.js using streams and backpressure handling, avoiding Heap Out of Memory errors in production."
 date: "2026-02-19"
 tags: ["nodejs", "performance", "aws", "streams", "backend"]
-keywords: ["node.js streams", "memory management", "aws s3 upload", "backpressure", "csv generation", "fintech engineering"]
+keywords:
+  [
+    "node.js streams",
+    "memory management",
+    "aws s3 upload",
+    "backpressure",
+    "csv generation",
+    "fintech engineering",
+  ]
+layout: layouts/post.njk
 author: "Munir Khakhi"
 ---
 
@@ -25,6 +34,7 @@ await s3Client.send(new PutObjectCommand({ Body: csv, ... }));
 ```
 
 ### Why This Fails
+
 1.  **Heap Exhaustion**: Loading 1 million objects into V8's heap immediately spikes memory usage. If each object is just 1KB, that's ~1GB of RAM just for the raw data, before overhead.
 2.  **GC Pauses**: The garbage collector works overtime trying to manage this massive allocation, blocking the event loop and causing latency spikes for other requests.
 3.  **String Concatenation**: Creating the huge CSV string requires even more contiguous memory allocation.
@@ -39,12 +49,15 @@ Our architecture looks like this:
 `Database Cursor (Source)` -> `CSV Formatter (Transform)` -> `S3 Upload (Destination)`
 
 ### 1. The Source: Database Cursor
+
 Instead of `toArray()`, we use a cursor. A cursor fetches documents in batches (e.g., 100 at a time) from the database server, keeping the application memory footprint low.
 
 ### 2. The Transform: CSV Formatting
+
 We need a Transform stream that takes an object chunk and converts it into a CSV string line.
 
 ### 3. The Destination: S3 Upload
+
 The AWS SDK v3 `Upload` utility is designed specifically for streams. It manages multipart uploads automatically, buffering just enough data to send a part (usually 5MB) before clearing memory.
 
 ## Implementation
@@ -52,16 +65,16 @@ The AWS SDK v3 `Upload` utility is designed specifically for streams. It manages
 Here is how you implement this pipeline using Node.js streams for robust error handling.
 
 ```javascript
-import { Readable, Transform } from 'node:stream';
-import { Upload } from '@aws-sdk/lib-storage';
-import { S3Client } from '@aws-sdk/client-s3';
+import { Readable, Transform } from "node:stream";
+import { Upload } from "@aws-sdk/lib-storage";
+import { S3Client } from "@aws-sdk/client-s3";
 
 async function generateMonthlyReport() {
-  const s3 = new S3Client({ region: 'us-east-1' });
+  const s3 = new S3Client({ region: "us-east-1" });
 
   // 1. Source: Readable from Cursor
   // Convert the AsyncIterable cursor into a standard Node.js Readable stream
-  const dbStream = Readable.from(db.collection('users').find());
+  const dbStream = Readable.from(db.collection("users").find());
 
   // 2. Transform: Object to CSV Line
   const csvTransform = new Transform({
@@ -74,36 +87,35 @@ async function generateMonthlyReport() {
       } catch (err) {
         callback(err);
       }
-    }
+    },
   });
 
   // Add Header row
-  csvTransform.push('User ID,Name,Balance\n');
+  csvTransform.push("User ID,Name,Balance\n");
 
   // 3. Destination: AWS S3 Upload
   // The Upload class reads from the stream and handles multipart upload
   const upload = new Upload({
     client: s3,
     params: {
-      Bucket: 'financial-reports',
+      Bucket: "financial-reports",
       Key: `statements/2026-02.csv`,
-      Body: csvTransform // The readable end of our transform stream
-    }
+      Body: csvTransform, // The readable end of our transform stream
+    },
   });
 
   try {
     // Connect the DB stream to the CSV transform
     // We don't pipe to 'upload' directly because AWS SDK 'Upload' takes the stream as a param.
     // Note: .pipe() does not forward errors, so we must handle them explicitly.
-    dbStream.on('error', (err) => csvTransform.destroy(err));
+    dbStream.on("error", (err) => csvTransform.destroy(err));
     dbStream.pipe(csvTransform);
 
-    console.log('Starting upload...');
+    console.log("Starting upload...");
     await upload.done();
-    console.log('Upload complete!');
-    
+    console.log("Upload complete!");
   } catch (error) {
-    console.error('Pipeline failed:', error);
+    console.error("Pipeline failed:", error);
     // Ensure streams are destroyed to prevent leaks
     dbStream.destroy();
   }
@@ -117,6 +129,7 @@ Why is `pipe()` or `pipeline()` essential here?
 If the database reads records faster than S3 can upload them (which is highly likely given network latency), data would accumulate in memory, eventually causing the same OOM crash we tried to avoid.
 
 **Backpressure** is the mechanism where the destination stream signals the source stream to "pause" reading until the buffer clears.
+
 1.  S3 Upload stream fills its internal buffer.
 2.  It returns `false` to the Transform stream.
 3.  The Transform stream pauses and signals the DB cursor to stop fetching.
